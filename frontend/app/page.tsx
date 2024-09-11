@@ -1,9 +1,13 @@
+import Categories from "./components/Categories";
+import PropertyList from "./components/properties/PropertyList";
+
 export default function Home() {
   return (
-    <div>
-      Airbnb django next
-      <h2 className="text-airbnb">Lala</h2>
-      <h2 className="text-airbnbDark">Lala</h2>
+    <div className="max-w-[1200px] mx-auto px-6">
+      <Categories />
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <PropertyList />
+      </div>
     </div>
   );
 }
