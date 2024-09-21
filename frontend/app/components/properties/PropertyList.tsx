@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import PropertyListItem from "./PropertyListItem";
+import apiService from "@/app/services/apiService";
 import axios from "axios";
 
 export type PropertyType = {
@@ -14,10 +15,8 @@ const PropertyList = () => {
   const [properties, setProperties] = useState<PropertyType[]>([]);
 
   const getProperties = async () => {
-    const url = "http://localhost:8000/api/properties/";
-
-    const response = await axios.get(url);
-    setProperties(response.data.data);
+    const tmpProperties = await apiService.get("/api/properties/");
+    setProperties(tmpProperties);
   };
 
   useEffect(() => {
