@@ -16,9 +16,7 @@ const SignupModal = () => {
   const [password2, setRepeatPassword] = useState("");
   const [error, setError] = useState<string[]>([]);
 
-  const submitSignup = async (event: React.FormEvent) => {
-    event.preventDefault(); // Zapobiega przeładowaniu strony
-
+  const submitSignup = async () => {
     const formData = {
       email,
       password1,
