@@ -14,6 +14,7 @@ const LoginModal = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const submitLogin = async () => {
     const formData = {
@@ -29,6 +30,7 @@ const LoginModal = () => {
     if (response.access) {
       handleLogin(response.user.pk, response.access, response.refresh);
       loginModal.close();
+      setLoading(!loading);
       router.push("/");
     } else {
       setError(response.non_field_errors);

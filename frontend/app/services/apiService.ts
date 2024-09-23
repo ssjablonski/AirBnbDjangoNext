@@ -1,12 +1,15 @@
 import axios from "axios";
+import { getAccessToken } from "../lib/actions";
 
 const apiService = {
   get: async function (url: string): Promise<any> {
+    const token = await getAccessToken();
     return new Promise((resolve, reject) => {
       axios
         .get(`${process.env.NEXT_PUBLIC_API_HOST}${url}`, {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => response.data)
@@ -21,11 +24,12 @@ const apiService = {
   },
 
   post: async function (url: string, data: any): Promise<any> {
+    const token = await getAccessToken();
     return new Promise((resolve, reject) => {
       fetch(`${process.env.NEXT_PUBLIC_API_HOST}${url}`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: data,
       })
